@@ -17,3 +17,9 @@ Abre http://localhost:8080. (También sirve cualquier servidor estático en la r
 ```
 npm test
 ```
+
+## Despliegue (GitHub Pages)
+
+El workflow `.github/workflows/pages.yml` corre `npm ci && npm test` en cada push a `main`, copia `index.html` y `src` a `_site` y despliega con `deploy-pages`.
+
+Configuración requerida una sola vez: en el repositorio, **Settings → Pages → Build and deployment → Source: "GitHub Actions"**.
