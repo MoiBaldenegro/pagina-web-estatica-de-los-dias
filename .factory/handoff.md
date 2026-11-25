@@ -1,6 +1,6 @@
 # Handoff
-- Hecho: issue #6. La página ya muestra los 7 feriados 2027 con fecha de descanso, fecha original, día de la semana, marca textual "Fin de semana" (solo 1 may y 25 dic), "Pasado" en los transcurridos y "Próximo feriado" destacado (borde/fondo + texto) en el siguiente.
-- Archivos: `src/render.js` (nuevo; `buildHolidayViewModel`, `createHolidayElement`, `renderHolidays`, sin dependencias y con `doc` inyectable), `src/main.js` (`initPage(now, doc)` calcula `todayInMexicoCity` y pinta; se auto-ejecuta si hay `document`), `src/styles.css` (nuevo), `index.html` (link al CSS y contenedor `#lista-feriados`).
-- API render: `buildHolidayViewModel(holidays, today)` es puro y devuelve filas con `{restDateLabel, originalDateLabel, weekdayLabel, status, statusLabel, isNext, isPast, isWeekend}`. `renderHolidays(container, holidays, today, doc)` reemplaza el contenido del contenedor por un `<ul>` de tarjetas.
-- Tests: `tests/render.test.js` (10) con un DOM falso mínimo; cubre 7 filas, fechas/día, fines de semana exactos, estados before/on/after, marcas textuales y `initPage`. `npm test` (48) y `npm run test:tz` (UTC/CDMX/Tokio) en verde.
-- Siguiente: issue #7 (cuenta regresiva al próximo feriado en hora CDMX). No tocar aún #8/#9/#10.
+- Hecho: issue #7. Cuenta regresiva al próximo feriado calculada con la fecha de CDMX (`todayInMexicoCity`), independiente de la zona del navegador. Muestra "¡Es hoy! Es X.", "Falta 1 día para X", "Faltan N días para X" o "Ya pasaron los feriados de 2027."
+- Archivos: `src/countdown.js` (nuevo; `buildCountdown(holidays, today)` puro), `src/render.js` (`renderCountdown(container, holidays, today, doc)`), `src/main.js` (`initPage` pinta `#cuenta-regresiva` y devuelve `countdown`), `index.html` (nuevo `<p id="cuenta-regresiva">`), `src/styles.css` (estilo `.countdown` y estados por `data-kind`), `tests/countdown.test.js` (nuevo) y `tests/render.test.js` (3 casos de render + initPage).
+- API countdown: `buildCountdown` → `{kind:'upcoming'|'today'|'none', days, holiday, message}`; `days === 0` es hoy, `holiday === null` y `days === null` tras el último feriado.
+- Tests: `npm test` (58) y `npm run test:tz` (UTC/CDMX/Tokio, 58 cada uno) en verde.
+- Siguiente: issues abiertos #8 (fuentes oficiales), #9 (workflow Pages) y #10 (accesibilidad/responsive/README); no adelantar su trabajo.

@@ -3,6 +3,7 @@ import { getHolidays2027 } from '../src/holidays.js';
 import {
   buildHolidayViewModel,
   createHolidayElement,
+  renderCountdown,
   renderHolidays,
 } from '../src/render.js';
 import { initPage } from '../src/main.js';
@@ -155,14 +156,47 @@ describe('renderHolidays', () => {
   });
 });
 
+describe('renderCountdown', () => {
+  it('pinta la cuenta regresiva y expone el estado como atributos', () => {
+    const container = new FakeNode('p');
+    const result = renderCountdown(
+      container,
+      getHolidays2027(),
+      '2026-12-31',
+      fakeDocument(),
+    );
+    expect(container.textContent).toBe('Falta 1 día para Año Nuevo');
+    expect(container.getAttribute('data-kind')).toBe('upcoming');
+    expect(container.getAttribute('data-days')).toBe('1');
+    expect(result.days).toBe(1);
+  });
+
+  it('pinta "¡Es hoy!" el día del feriado', () => {
+    const container = new FakeNode('p');
+    renderCountdown(container, getHolidays2027(), '2027-12-25', fakeDocument());
+    expect(container.textContent).toContain('¡Es hoy!');
+    expect(container.getAttribute('data-kind')).toBe('today');
+    expect(container.getAttribute('data-days')).toBe('0');
+  });
+
+  it('pinta el aviso después del último feriado', () => {
+    const container = new FakeNode('p');
+    renderCountdown(container, getHolidays2027(), '2027-12-26', fakeDocument());
+    expect(container.textContent).toContain('Ya pasaron los feriados de 2027');
+    expect(container.getAttribute('data-kind')).toBe('none');
+  });
+});
+
 describe('initPage', () => {
-  it('pinta los 7 feriados sin errores y actualiza el estado', () => {
+  it('pinta los 7 feriados y la cuenta regresiva sin errores', () => {
     const doc = fakeDocument();
     const lista = new FakeNode('section');
     const estado = new FakeNode('p');
+    const countdown = new FakeNode('p');
     doc.getElementById = (id) => {
       if (id === 'lista-feriados') return lista;
       if (id === 'estado') return estado;
+      if (id === 'cuenta-regresiva') return countdown;
       return null;
     };
 
@@ -171,5 +205,7 @@ describe('initPage', () => {
     expect(result.today).toBe('2027-05-01');
     expect(findByClass(lista, 'holiday')).toHaveLength(7);
     expect(estado.textContent).toContain('7 feriados');
+    expect(countdown.textContent).toContain('¡Es hoy!');
+    expect(countdown.getAttribute('data-kind')).toBe('today');
   });
 });

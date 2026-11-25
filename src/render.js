@@ -1,4 +1,5 @@
 import { formatDateEs, formatDateLongEs, weekdayNameOf } from './dates.js';
+import { buildCountdown } from './countdown.js';
 import { getNextHoliday, getStatus } from './holidays.js';
 
 const STATUS_LABELS = {
@@ -87,6 +88,20 @@ export function createHolidayElement(holiday, doc = globalThis.document) {
   if (badges.children.length > 0) item.appendChild(badges);
 
   return item;
+}
+
+/**
+ * Pinta la cuenta regresiva dentro de `container` y devuelve el resultado de
+ * `buildCountdown`. `today` debe venir ya en hora de Ciudad de México.
+ */
+export function renderCountdown(container, holidays, today, doc = globalThis.document) {
+  const countdown = buildCountdown(holidays, today);
+  container.textContent = countdown.message;
+  container.setAttribute('data-kind', countdown.kind);
+  if (countdown.days !== null) {
+    container.setAttribute('data-days', String(countdown.days));
+  }
+  return countdown;
 }
 
 /**
