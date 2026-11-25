@@ -1,5 +1,4 @@
 # Handoff
-- Hecho: issue #14, revisión contra docs/vision.md: MVP completo, 73 tests verdes, sin bugs ni p0. productionReady=true.
-- Abierto y ya planeado: #15 "new styles" (no tocado).
-- Pendiente humano (no bloquea): Settings → Pages → Source "GitHub Actions".
-- Siguiente: ejecutar #15; nada más planeado.
+- Hecho: #15 restyle con MXVI: index.html (header hero, link a mxvi.css), src/styles.css reescrito (oscuro, 4x2 grid sin scroll en escritorio), tests a11y actualizados. Tests verdes.
+- Pendiente: revisión visual en navegador real (no hecha); Pages Source "GitHub Actions" (humano).
+- Siguiente: revisar visualmente a 1366x768 y móvil.

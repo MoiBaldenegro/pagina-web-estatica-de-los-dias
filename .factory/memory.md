@@ -14,3 +14,4 @@ Agrega entradas cortas y fechadas; no borres las de otros salvo que ya no sean c
 - 2026-11-25: #11 revisión: MVP completo, 73 tests verdes, productionReady=true, backlog vacío.
 - 2026-11-25: #13 revisión: sin cambios; 73 tests verdes, productionReady=true, nextIssues vacío.
 - 2026-11-25: #14 revisión: sin cambios; 73 tests verdes (requiere npm ci), productionReady=true; #15 (new styles) ya planeado.
+- 2026-11-25: #15 restyle MXVI (tema oscuro, mxvi.css remoto + fallbacks, layout 100dvh sin scroll ≥960px). Contrastes en a11y.test.js ahora son del tema oscuro. No verificado visualmente en navegador.

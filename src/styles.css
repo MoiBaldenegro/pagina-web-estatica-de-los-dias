@@ -1,169 +1,232 @@
+/* Tema MXVI (https://moibaldenegro.github.io/mxvi-design-system/): noche índigo,
+   líneas finas, esquinas rectas y acento ciruela. Los fallbacks permiten que
+   la página funcione aunque no cargue mxvi.css. */
 :root {
-  color-scheme: light;
-  --fondo: #f6f7f9;
-  --texto: #1b1f24;
-  --tarjeta: #ffffff;
-  --borde: #d7dbe0;
-  --acento: #0b5cad;
-  --proximo-fondo: #e7f1fb;
-  --pasado-texto: #5a626b;
+  color-scheme: dark;
+  --bg: var(--color-background, #070716);
+  --surface: var(--color-surface, #101018);
+  --text: var(--color-text, #ffffff);
+  --muted: var(--color-text-secondary, #b8b8c5);
+  --line: var(--color-border, rgba(255, 255, 255, .08));
+  --line-strong: var(--color-border-strong, rgba(255, 255, 255, .15));
+  --accent: var(--color-accent, #B37AC2);
+  --accent-hover: var(--color-accent-hover, #C396CF);
+  --orange: var(--color-logo-orange, #F7941D);
+  --success: var(--color-success, #39C98A);
+  --gap: var(--gap-card, 14px);
+  --display: var(--font-display, 'Geist Pixel', ui-monospace, monospace);
+  --sans: var(--font-sans, 'Geist', ui-sans-serif, system-ui, sans-serif);
 }
 
-* {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; height: auto; width: auto; }
 
 body {
-  margin: 0;
-  background: var(--fondo);
-  color: var(--texto);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.5;
+  display: block;
+  min-height: 100dvh;
+  background:
+    radial-gradient(70% 55% at 15% 0%, var(--color-glow, rgba(108, 56, 122, .35)), transparent 70%),
+    linear-gradient(180deg, var(--color-hero-top, #3C1F44) -40%, var(--bg) 45%);
+  background-color: var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.45;
 }
 
+/* Cuadrícula de una sola pantalla en escritorio */
 .page {
-  max-width: 720px;
+  max-width: var(--container-max, 1500px);
   margin: 0 auto;
-  padding: 1.25rem 1rem 2rem;
+  padding: 1.25rem 1rem 1rem;
+}
+
+main.page {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+  grid-template-areas: "hero" "lista" "fuentes";
+}
+
+.hero { grid-area: hero; }
+#lista-feriados { grid-area: lista; }
+.fuentes { grid-area: fuentes; }
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-family: var(--font-mono, 'Geist Mono', ui-monospace, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1, h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-synthesis: none;
 }
 
 h1 {
-  font-size: 1.5rem;
-  line-height: 1.25;
-  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 4.2vw, 3.4rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
 }
 
 #estado {
-  margin: 0 0 1.25rem;
-  color: var(--pasado-texto);
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .countdown {
-  margin: 0 0 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--acento);
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--accent);
+  background: var(--surface);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  color: var(--accent);
 }
 
-.countdown[data-kind="today"] {
-  color: #0a7a35;
-}
-
-.countdown[data-kind="none"] {
-  color: var(--pasado-texto);
-}
+.countdown[data-kind="today"] { color: var(--success); border-left-color: var(--success); }
+.countdown[data-kind="none"] { color: var(--muted); }
 
 .holidays {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.75rem;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .holiday {
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 0.75rem;
-  padding: 0.9rem 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 1rem;
+  box-shadow: var(--color-card-shadow, inset 0 1px 0 rgba(255, 255, 255, .05), 0 18px 40px rgba(0, 0, 0, .28));
+  transition: border-color .28s cubic-bezier(.2, .8, .2, 1), transform .28s cubic-bezier(.2, .8, .2, 1);
 }
+
+.holiday:hover { border-color: var(--line-strong); transform: translateY(-2px); }
 
 .holiday__name {
-  font-size: 1.125rem;
-  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
 }
 
-.holiday__row {
-  margin: 0.15rem 0;
-  font-size: 0.95rem;
-}
-
-.holiday__label {
-  color: var(--pasado-texto);
-}
-
-.holiday__date {
-  font-weight: 600;
-}
+.holiday__row { margin: 0.15rem 0; font-size: 0.9rem; }
+.holiday__label { color: var(--muted); }
+.holiday__date { font-weight: 600; }
 
 .holiday__badges {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin: 0.6rem 0 0;
-  padding: 0;
+  margin: auto 0 0;
+  padding: 0.6rem 0 0;
 }
 
 .badge {
-  border-radius: 999px;
-  padding: 0.15rem 0.6rem;
-  font-size: 0.8rem;
+  border-radius: 0;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.75rem;
   font-weight: 700;
   border: 1px solid transparent;
 }
 
-.badge--next {
-  background: var(--acento);
-  color: #ffffff;
-}
-
-.badge--past {
-  background: #eceef1;
-  color: var(--pasado-texto);
-  border-color: var(--borde);
-}
-
-.badge--weekend {
-  background: #fff4d6;
-  color: #6b4b00;
-  border-color: #e6c766;
-}
+.badge--next { background: var(--accent); color: var(--bg); }
+.badge--past { background: transparent; color: var(--muted); border-color: var(--line-strong); }
+.badge--weekend { background: transparent; color: var(--orange); border-color: var(--orange); }
 
 .holiday--next {
-  border: 2px solid var(--acento);
-  background: var(--proximo-fondo);
+  border: 1px solid var(--accent);
+  background: linear-gradient(160deg, rgba(108, 56, 122, .45), var(--surface) 70%);
 }
 
+.holiday--past { opacity: 0.85; }
 .holiday--past .holiday__name,
-.holiday--past .holiday__date {
-  color: var(--pasado-texto);
+.holiday--past .holiday__date { color: var(--muted); }
+
+.fuentes h2 {
+  display: inline;
+  margin: 0 0.75rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
-.sources { padding-left: 1.2rem; }
+.fuentes #lista-fuentes { display: inline; }
+.sources { display: inline; list-style: none; margin: 0; padding: 0; font-size: 0.85rem; }
+.sources li { display: inline; margin-right: 1rem; }
 .sources a { overflow-wrap: anywhere; }
 
-a { color: var(--acento); }
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
 
 a:focus-visible,
 [tabindex]:focus-visible {
-  outline: 3px solid #b45309;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 2px;
 }
+
+.footer { padding-top: 0; font-size: 0.85rem; }
+.footer p { margin: 0; }
 
 .skip-link {
   position: absolute;
   left: 0.5rem;
   top: -4rem;
-  background: var(--acento);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--bg);
   padding: 0.5rem 0.75rem;
-  border-radius: 0.4rem;
   z-index: 10;
 }
+.skip-link:focus { top: 0.5rem; }
 
-.skip-link:focus {
-  top: 0.5rem;
+.holiday, .holiday__row { overflow-wrap: anywhere; }
+
+/* Escritorio: todo cabe sin scroll. Héroe a la izquierda, 7 tarjetas a la derecha. */
+@media (min-width: 960px) and (min-height: 560px) {
+  body { display: flex; flex-direction: column; height: 100dvh; overflow: hidden; }
+  main.page {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    grid-template-columns: minmax(280px, 30%) 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "hero lista" "fuentes fuentes";
+    padding-bottom: 0;
+  }
+  .hero { align-self: center; padding-right: 1rem; }
+  #lista-feriados { min-height: 0; }
+  .holidays {
+    height: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: dense;
+  }
+  .holiday { min-height: 0; overflow: hidden; }
+  .holiday--next { grid-column: span 2; justify-content: center; }
+  .holiday--next .holiday__name { font-size: clamp(1.4rem, 2.4vw, 2.2rem); }
+  .holiday--next .holiday__row { font-size: 1rem; }
+  .footer { flex: 0 0 auto; width: 100%; padding-top: 0.25rem; padding-bottom: 0.75rem; }
 }
 
-.holiday,
-.holiday__row {
-  overflow-wrap: anywhere;
+@media (min-width: 640px) and (max-width: 959px) {
+  .holidays { grid-template-columns: repeat(2, 1fr); }
+  .holiday--next { grid-column: 1 / -1; }
 }
 
-@media (max-width: 400px) {
-  .page { padding: 1rem 0.75rem 1.5rem; }
-  h1 { font-size: 1.3rem; }
-  .countdown { font-size: 1.1rem; }
+@media (prefers-reduced-motion: reduce) {
+  .holiday { transition: none; }
+  .holiday:hover { transform: none; }
 }

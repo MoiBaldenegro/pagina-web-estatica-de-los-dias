@@ -23,20 +23,24 @@ describe('accesibilidad', () => {
     expect(html).toMatch(/class="skip-link" href="#lista-feriados"/);
     expect(html).toMatch(/id="cuenta-regresiva"[^>]*aria-live="polite"/);
   });
+  it('usa el sistema de diseño MXVI y un layout de una pantalla', () => {
+    expect(html).toMatch(/mxvi-design-system\/mxvi\/mxvi\.css/);
+    expect(css).toMatch(/--color-background/);
+    expect(css).toMatch(/height: 100dvh/);
+    expect(css).toMatch(/repeat\(4, 1fr\)/);
+  });
   it('define foco visible', () => {
     expect(css).toMatch(/:focus-visible/);
   });
   it.each([
-    ['#1b1f24', '#f6f7f9'],
-    ['#0b5cad', '#f6f7f9'],
-    ['#0b5cad', '#e7f1fb'],
-    ['#5a626b', '#f6f7f9'],
-    ['#5a626b', '#ffffff'],
-    ['#5a626b', '#e7f1fb'],
-    ['#5a626b', '#eceef1'],
-    ['#ffffff', '#0b5cad'],
-    ['#6b4b00', '#fff4d6'],
-    ['#0a7a35', '#f6f7f9'],
+    ['#ffffff', '#070716'],
+    ['#b8b8c5', '#070716'],
+    ['#b8b8c5', '#101018'],
+    ['#B37AC2', '#070716'],
+    ['#B37AC2', '#101018'],
+    ['#070716', '#B37AC2'],
+    ['#39C98A', '#070716'],
+    ['#F7941D', '#101018'],
   ])('contraste AA %s sobre %s', (fg, bg) => {
     expect(ratio(fg, bg)).toBeGreaterThanOrEqual(4.5);
   });
