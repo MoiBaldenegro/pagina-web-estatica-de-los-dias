@@ -6,3 +6,13 @@ describe('esqueleto', () => {
     expect(TITULO).toContain('2027');
   });
 });
+
+describe('pie de página', () => {
+  it('muestra el año del calendario', async () => {
+    const { initPage } = await import('../src/main.js');
+    const el = { textContent: '' };
+    const doc = { getElementById: (id) => (id === 'anio-calendario' ? el : null) };
+    initPage(new Date('2027-03-01T12:00:00Z'), doc);
+    expect(el.textContent).toBe('Calendario 2027');
+  });
+});

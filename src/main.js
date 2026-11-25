@@ -29,6 +29,9 @@ export function initPage(now = new Date(), doc = globalThis.document) {
     estado.textContent = `Mostrando los ${holidays.length} feriados obligatorios de 2027.`;
   }
 
+  const anio = doc.getElementById('anio-calendario');
+  if (anio) anio.textContent = `Calendario ${holidays[0].originalDate.slice(0, 4)}`;
+
   return { holidays, today, countdown };
 }
 
