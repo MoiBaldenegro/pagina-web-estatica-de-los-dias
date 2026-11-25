@@ -1,0 +1,116 @@
+:root {
+  color-scheme: light;
+  --fondo: #f6f7f9;
+  --texto: #1b1f24;
+  --tarjeta: #ffffff;
+  --borde: #d7dbe0;
+  --acento: #0b5cad;
+  --proximo-fondo: #e7f1fb;
+  --pasado-texto: #5a626b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+
+#estado {
+  margin: 0 0 1.25rem;
+  color: var(--pasado-texto);
+}
+
+.holidays {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.holiday {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 0.75rem;
+  padding: 0.9rem 1rem;
+}
+
+.holiday__name {
+  font-size: 1.125rem;
+  margin: 0 0 0.4rem;
+}
+
+.holiday__row {
+  margin: 0.15rem 0;
+  font-size: 0.95rem;
+}
+
+.holiday__label {
+  color: var(--pasado-texto);
+}
+
+.holiday__date {
+  font-weight: 600;
+}
+
+.holiday__badges {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0;
+  padding: 0;
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.badge--next {
+  background: var(--acento);
+  color: #ffffff;
+}
+
+.badge--past {
+  background: #eceef1;
+  color: var(--pasado-texto);
+  border-color: var(--borde);
+}
+
+.badge--weekend {
+  background: #fff4d6;
+  color: #6b4b00;
+  border-color: #e6c766;
+}
+
+.holiday--next {
+  border: 2px solid var(--acento);
+  background: var(--proximo-fondo);
+}
+
+.holiday--past .holiday__name,
+.holiday--past .holiday__date {
+  color: var(--pasado-texto);
+}
