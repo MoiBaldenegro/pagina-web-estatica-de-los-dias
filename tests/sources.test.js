@@ -35,7 +35,8 @@ describe('fuentes oficiales', () => {
     const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
     for (const s of SOURCES) expect(html).toContain(s.url);
     const links = html.match(/<a [^>]*href="https?:[^>]*>/g) ?? [];
-    expect(links.length).toBe(2);
+    expect(links.length).toBe(3); // 2 fuentes + enlace al repositorio en el pie
+    expect(html).toMatch(/<footer[\s\S]*github\.com\/MoiBaldenegro\/pagina-web-estatica-de-los-dias[\s\S]*<\/footer>/);
     for (const l of links) expect(l).toContain('noopener');
   });
 });
