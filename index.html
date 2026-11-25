@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="./src/styles.css">
 </head>
 <body>
-  <main class="page">
+  <a class="skip-link" href="#lista-feriados">Saltar a la lista de feriados</a>
+  <main class="page" id="contenido">
     <h1>Días feriados 2027 en México</h1>
-    <p id="cuenta-regresiva" class="countdown">Calculando…</p>
+    <p id="cuenta-regresiva" class="countdown" role="status" aria-live="polite">Calculando…</p>
     <p id="estado">Cargando…</p>
-    <section id="lista-feriados" aria-label="Lista de feriados 2027">
+    <section id="lista-feriados" aria-label="Lista de feriados 2027" tabindex="-1">
       <noscript>Activa JavaScript para ver la lista de feriados.</noscript>
     </section>
     <section aria-labelledby="titulo-fuentes">

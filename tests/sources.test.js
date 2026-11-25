@@ -34,7 +34,7 @@ describe('fuentes oficiales', () => {
   it('index.html tiene los enlaces con rel noopener', () => {
     const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
     for (const s of SOURCES) expect(html).toContain(s.url);
-    const links = html.match(/<a [^>]*>/g) ?? [];
+    const links = html.match(/<a [^>]*href="https?:[^>]*>/g) ?? [];
     expect(links.length).toBe(2);
     for (const l of links) expect(l).toContain('noopener');
   });
