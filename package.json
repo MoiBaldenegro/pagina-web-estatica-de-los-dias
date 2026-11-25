@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest run",
+    "test:tz": "TZ=UTC vitest run && TZ=America/Mexico_City vitest run && TZ=Asia/Tokyo vitest run",
     "start": "npx --yes http-server . -p 8080 -c-1"
   },
   "devDependencies": {

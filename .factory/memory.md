@@ -5,3 +5,4 @@ Agrega entradas cortas y fechadas; no borres las de otros salvo que ya no sean c
 - 2026-11-25: Feriados 2027 por LFT art.74 en docs/vision.md; LFT no traslada fines de semana; verificar fuentes al implementar.
 - 2026-11-25: Arquitectura en docs/architecture.md: sin build, fechas como strings YYYY-MM-DD, 'ahora' inyectado, tests Vitest en node.
 - 2026-11-25: Tests en tests/*.test.js; npm start usa npx http-server (puerto 8080); main.js tolera entorno sin document.
+- 2026-11-25: `src/dates.js` listo. API: `todayInMexicoCity(now)` (Intl en-CA + formatToParts, TZ America/Mexico_City), `nthWeekdayOfMonth(year, month 1-12, weekday 0-6, n)` → ISO o null, `weekdayOf`, `isWeekend`, `daysBetween(a,b)=b-a`, `weekdayNameEs/Of`, `formatDateEs`, `formatDateLongEs`, `parseIso`. `npm run test:tz` valida con 3 TZ.
