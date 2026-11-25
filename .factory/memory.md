@@ -13,3 +13,4 @@ Agrega entradas cortas y fechadas; no borres las de otros salvo que ya no sean c
 - 2026-11-25: #10: skip-link, :focus-visible, aria-live en cuenta regresiva, contraste AA verificado en tests/a11y.test.js, README con checklist. Si agregas colores, añádelos a ese test.
 - 2026-11-25: #11 revisión: MVP completo, 73 tests verdes, productionReady=true, backlog vacío.
 - 2026-11-25: #13 revisión: sin cambios; 73 tests verdes, productionReady=true, nextIssues vacío.
+- 2026-11-25: #14 revisión: sin cambios; 73 tests verdes (requiere npm ci), productionReady=true; #15 (new styles) ya planeado.
