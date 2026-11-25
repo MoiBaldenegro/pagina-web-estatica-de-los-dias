@@ -1,5 +1,6 @@
 import { todayInMexicoCity } from './dates.js';
 import { getHolidays2027 } from './holidays.js';
+import { renderSources } from './sources.js';
 import { renderCountdown, renderHolidays } from './render.js';
 
 export const TITULO = 'Días feriados 2027 en México';
@@ -19,6 +20,9 @@ export function initPage(now = new Date(), doc = globalThis.document) {
   const countdown = countdownContainer
     ? renderCountdown(countdownContainer, holidays, today, doc)
     : null;
+
+  const sourcesContainer = doc.getElementById('lista-fuentes');
+  if (sourcesContainer) renderSources(sourcesContainer, undefined, doc);
 
   const estado = doc.getElementById('estado');
   if (estado) {

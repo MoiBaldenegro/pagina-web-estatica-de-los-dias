@@ -129,3 +129,6 @@ h1 {
 .holiday--past .holiday__date {
   color: var(--pasado-texto);
 }
+
+.sources { padding-left: 1.2rem; }
+.sources a { overflow-wrap: anywhere; }
