@@ -8,3 +8,7 @@
 7. p1 Workflow GitHub Pages.
 8. p2 Accesibilidad y responsive (360 px) + README completo.
 9. p2 Verificación final de datos contra fuentes y revisión de listo para producción.
+
+## Estado (2026-11-25, issue #11)
+Todos los ítems 1-9 completados; MVP de docs/vision.md cumplido, 73 tests en verde, sin bugs conocidos. Producto marcado production-ready.
+Pendiente humano (no bloquea): Settings → Pages → Source "GitHub Actions".
