@@ -1,3 +1,3 @@
 # Handoff
-- Hecho: issue #2; escritos docs/architecture.md y docs/backlog.md; propuestos 8 issues constructor.
-- Siguiente: construir el esqueleto ejecutable con Vitest (p0), luego dates.js y holidays.js.
+- Hecho: issue #3; package.json (type module, test=vitest run, start=http-server), index.html lang=es, src/main.js, tests/main.test.js, README. npm test pasa.
+- Siguiente: #4 src/dates.js con tests (tests en tests/*.test.js).
