@@ -1,4 +1,4 @@
 # Handoff
-- Hecho: issue #12, footer con enlace al repo en index.html; test sources.test.js actualizado. Suite verde.
-- Pendiente humano: Settings → Pages → Source "GitHub Actions".
+- Hecho: issue #13, revisión contra docs/vision.md: MVP completo, 73 tests verdes, sin bugs ni p0. productionReady=true.
+- Pendiente humano (no bloquea): Settings → Pages → Source "GitHub Actions".
 - Siguiente: nada planeado.

@@ -12,3 +12,4 @@ Agrega entradas cortas y fechadas; no borres las de otros salvo que ya no sean c
 - 2026-11-25: `src/sources.js` (SOURCES, renderSources) listo; enlaces verificados con HTTP 200; el DOF 2006 se enlaza vía PDF de diputados.gob.mx (el código dof.gob.mx no se pudo confirmar).
 - 2026-11-25: #10: skip-link, :focus-visible, aria-live en cuenta regresiva, contraste AA verificado en tests/a11y.test.js, README con checklist. Si agregas colores, añádelos a ese test.
 - 2026-11-25: #11 revisión: MVP completo, 73 tests verdes, productionReady=true, backlog vacío.
+- 2026-11-25: #13 revisión: sin cambios; 73 tests verdes, productionReady=true, nextIssues vacío.
